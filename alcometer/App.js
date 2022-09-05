@@ -6,25 +6,34 @@ import { useState } from 'react'
 export default function App() {
 
   
-  const [toggleRadio, setToggleRadio] = useState(false)
-  const [man, setMan] = useState(false)
-  const [woman, setWoman] = useState(true)
-  const [gender, setGender] = useState(0)
+  const [checked, setChecked] = useState(0);
+  const [weight, setWeight] = useState(0);
+  const [bottles, setBottles] = useState(0);
+  const [hours, setHours] = useState(0);
+  const [answer, setAnswer] = useState(0)
+  var gender = ['Male','Female'];
 
 
-    const toggleRadioBtn = () => { 
-      setToggleRadio(!toggleRadio)   
+  const calculate = () => {
+    
+    let litres = bottles * 0.33;
+    let grams = litres*8*4.5;
+    let burning = weight / 10;
+    let gramsLeft = grams - (hours*burning)
+    let type;
+
+    if(checked == 0) {
+      type = 0.7
+    } else {
+      type = 0.6
     }
 
-    const renderRadio = () => {
-      if(toggleRadio) {
-        return (<View></View>)
-      } else {
-        return (<View style = { styles.selectedRadioBtn }></View>)
-      }
-    }
+    setAnswer ( gramsLeft/(weight*type) )
+  }
 
-      
+    
+
+    
     
 
   return (
@@ -32,11 +41,11 @@ export default function App() {
       <ScrollView>
         <Text style={styles.title}>Alcometer</Text>
           <Text style={styles.subTitle}>Weight</Text>
-           <TextInput style={styles.textInput} placeholder={"Weight"} keyboardType="number-pad"></TextInput>
+           <TextInput style={styles.textInput} placeholder={"Weight"} keyboardType="number-pad" onChangeText={ value => setWeight(value)}></TextInput>
 
             <View style={styles.seprator}/>
               <Text style={styles.subTitle}>Bottles</Text>
-            <NumericInput type='up-down' onChange={value => console.log(value)}
+            <NumericInput type='up-down' onChange={value => setBottles(value)}
                                          totalWidth={325} 
                                          totalHeight={45}
                                          minValue={0}
@@ -44,28 +53,44 @@ export default function App() {
             
             <View style={styles.seprator}/>
               <Text style={styles.subTitle}>Hours</Text>
-            <NumericInput type='up-down' onChange={value => console.log(value)}
+            <NumericInput type='up-down' onChange={value => setHours(value)}
                                          totalWidth={325} 
                                          totalHeight={45}
                                          minValue={0}
             />
 
             <View style={styles.seprator}/>
-            <Text style={styles.subTitle}>Gender</Text>
-              <View style={styles.radioContainer}>
-                <Text>Male</Text> 
-                  <TouchableOpacity style = { styles.radioBtn } onPress={() => toggleRadioBtn()}>
-                      {renderRadio()}
-                  </TouchableOpacity>
-              </View>
+              <Text style={styles.subTitle}>Gender</Text>
 
-              <View style={styles.radioContainer}>
-                <Text>Female</Text> 
-                  <TouchableOpacity style = { styles.radioBtn } onPress={() => toggleRadioBtn() } >
-                      {renderRadio()}
-                  </TouchableOpacity>
-              </View>
+                <View style = { styles.radioContainer}>
+                  {gender.map((gender, key) => {
+                      return(
+                        <View key={gender}>
+                          {checked == key ? (
+                            <View>
+                              <Text style = { styles.Text }> { gender }</Text>
+                            <TouchableOpacity style={styles.radioBtn}>   
+                              <View style = { styles.selectedRadioBtn}/>
+                            </TouchableOpacity>
+                          </View>
+                          ) : (
+                            <View>
+                              <Text> { gender }</Text>
+                                <TouchableOpacity style={styles.radioBtn} onPress={() => { setChecked(key) }}>
+                                  <View style = {styles.unselected}></View>                         
+                                </TouchableOpacity>
+                              </View>
+                          )}
+                      </View>
+                      )
+                  })}
+                </View>
 
+                <View style={styles.seprator}/>
+                  <View style = {styles.answerContainer}>
+                     <Text style = {styles.answerText}>{answer.toFixed(2)}</Text>
+                  </View>
+                    <Button title = {'Calculate'} onPress = {() => calculate()}></Button>
         <StatusBar style="auto" />
       </ScrollView>
     </View>
@@ -102,7 +127,7 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   radioContainer: {
-    margin: 20,
+    margin: 25,
     flexDirection: 'row',
     justifyContent: 'space-between'
   },
@@ -119,7 +144,21 @@ const styles = StyleSheet.create({
       width: 15,
       height: 15,
       borderRadius: 50,
-      backgroundColor: '#3740ff',
-      
+      backgroundColor: '#3740ff',   
+  },
+  unselectedRadioBtn: {
+    backgroundColor: '#fff'
   }, 
+  Text: {
+    fontSize: 18
+  },
+  answerContainer: {
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  answerText : {
+    fontSize: 40,
+    color: "green",
+  },
+
 });
