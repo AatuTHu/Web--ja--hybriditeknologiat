@@ -1,5 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, ScrollView, TextInput, Button, TouchableOpacity, Image } from 'react-native';
+import {  Text, View, ScrollView, TextInput, Button, TouchableOpacity, Image } from 'react-native';
+import  StyleSheet from './Styles'
+import Radiobutton from './components/Radiobutton';
 import NumericInput from 'react-native-numeric-input'
 import { useState } from 'react'
 
@@ -38,58 +40,35 @@ export default function App() {
     
 
   return (
-    <View style={styles.container}>
+    <View style={StyleSheet.container}>
       <ScrollView>
-        <Text style={styles.title}>Alcometer</Text>
-          <Text style={styles.subTitle}>Weight</Text>
-           <TextInput style={styles.textInput} placeholder={"Weight"} keyboardType="numeric" onChangeText={ value => setWeight(value)}></TextInput>
+        <Text style={StyleSheet.title}>Alcometer</Text>
+          <Text style={StyleSheet.subTitle}>Weight</Text>
+           <TextInput style={StyleSheet.textInput} placeholder={"Weight"} keyboardType="numeric" onChangeText={ value => setWeight(value)}></TextInput>
 
-            <View style={styles.seprator}/>
-              <Text style={styles.subTitle}>Bottles</Text>
+            <View style={StyleSheet.seprator}/>
+              <Text style={StyleSheet.subTitle}>Bottles</Text>
             <NumericInput type='up-down' onChange={value => setBottles(value)}
                                          totalWidth={325} 
                                          totalHeight={45}
                                          minValue={0}
             />
             
-            <View style={styles.seprator}/>
-              <Text style={styles.subTitle}>Hours</Text>
+            <View style={StyleSheet.seprator}/>
+              <Text style={StyleSheet.subTitle}>Hours</Text>
             <NumericInput type='up-down' onChange={value => setHours(value)}
                                          totalWidth={325} 
                                          totalHeight={45}
                                          minValue={0}
             />
 
-            <View style={styles.seprator}/>
-              <Text style={styles.subTitle}>Gender</Text>
-
-                <View style = { styles.radioContainer}>
-                  {gender.map((gender, key) => {
-                      return(
-                        <View key={gender}>
-                          {checked == key ? (
-                            <View>
-                              <Text style = { styles.Text }> { gender }</Text>
-                            <TouchableOpacity style={styles.radioBtn}>   
-                              <View style = { styles.selectedRadioBtn}/>
-                            </TouchableOpacity>
-                          </View>
-                          ) : (
-                            <View>
-                              <Text> { gender }</Text>
-                                <TouchableOpacity style={styles.radioBtn} onPress={() => { setChecked(key) }}>
-                                  <View style = {styles.unselected}></View>                         
-                                </TouchableOpacity>
-                              </View>
-                          )}
-                      </View>
-                      )
-                  })}
-                </View>
-
-                <View style={styles.seprator}/>
-                  <View style = {styles.answerContainer}>
-                      <Text style = { [answer <= 0.5 ? styles.green : answer >= 0.5 && answer <= 1.2 ? styles.yellow :  styles.red ]}>{answer}</Text>
+            <View style={StyleSheet.seprator}/>
+              <Text style={StyleSheet.subTitle}>Gender</Text>
+                <Radiobutton gender={gender} checked = {checked} setChecked = {setChecked}/>
+            
+                <View style={StyleSheet.seprator}/>
+                  <View style = {StyleSheet.answerContainer}>
+                      <Text style = { [answer <= 0.5 ? StyleSheet.green : answer >= 0.5 && answer <= 1.2 ? StyleSheet.yellow :  StyleSheet.red ]}>{answer}</Text>
                   </View>
                     <Button title = {'Calculate'} onPress = {() => calculate()}></Button>
         <StatusBar style="auto" />
@@ -98,76 +77,3 @@ export default function App() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    top: 24,
-    padding: 15, 
-  },
-  title: {
-    textAlign: 'center',
-    width: '100%',
-    height: 100,
-    fontSize: 40,
-    fontWeight: 'bold',
-    color: '#00BFFF',
-  },
-  subTitle: {
-    textAlign: 'left',
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  textInput: {
-    height: 50,
-    backgroundColor: 'lightGrey',
-  },
-  seprator: {
-    height: 10,
-    width: 200,
-    margin: 10,
-  },
-  radioContainer: {
-    margin: 25,
-    flexDirection: 'row',
-    justifyContent: 'space-between'
-  },
-  radioBtn: {
-    height: 30,
-		width: 30,
-		borderRadius: 100,
-		borderWidth: 2,
-		borderColor: '#3740ff',
-		alignItems: 'center',
-		justifyContent: 'center',
-  },
-  selectedRadioBtn: {  
-      width: 15,
-      height: 15,
-      borderRadius: 50,
-      backgroundColor: '#3740ff',   
-  },
-  unselectedRadioBtn: {
-    backgroundColor: '#fff'
-  }, 
-  Text: {
-    fontSize: 18
-  },
-  answerContainer: {
-    alignItems: 'center',
-    marginBottom: 20,
-  },
-  green : {
-    fontSize: 40,
-    color: "green",
-  },
-  yellow : {
-    fontSize: 40,
-    color: "yellow",
-  },
-  red : {
-    fontSize: 40,
-    color: "red",
-  }
-
-});
