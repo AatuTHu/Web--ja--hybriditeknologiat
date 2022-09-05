@@ -7,7 +7,7 @@ export default function App() {
 
   
   const [checked, setChecked] = useState(0);
-  const [weight, setWeight] = useState(0);
+  const [weight, setWeight] = useState('');
   const [bottles, setBottles] = useState(0);
   const [hours, setHours] = useState(0);
   const [answer, setAnswer] = useState(0)
@@ -15,20 +15,21 @@ export default function App() {
 
 
   const calculate = () => {
-    
-    let litres = bottles * 0.33;
-    let grams = litres*8*4.5;
-    let burning = weight / 10;
-    let gramsLeft = grams - (hours*burning)
+    const specialChars = /[a-zA-Z`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
     let type;
-
-    if(checked == 0) {
-      type = 0.7
+    if(weight.length == 0 || !parseInt(weight) || specialChars.test(weight)) {
+      alert('Weight has not been given, or was not a number')
     } else {
-      type = 0.6
-    }
+      if(checked == 0) { type = 0.7 } else { type = 0.6 };
+        let result = ((bottles*0.33)*8*4.5 - (hours*(weight / 10)))/(weight*type)
 
-    setAnswer ( gramsLeft/(weight*type) )
+        if(result >= 0) {
+          setAnswer(result.toFixed(2))
+        } else {
+          setAnswer(0.00)
+          alert('You have no alcohol in your blood')
+        }
+  }
   }
 
     
@@ -41,7 +42,7 @@ export default function App() {
       <ScrollView>
         <Text style={styles.title}>Alcometer</Text>
           <Text style={styles.subTitle}>Weight</Text>
-           <TextInput style={styles.textInput} placeholder={"Weight"} keyboardType="number-pad" onChangeText={ value => setWeight(value)}></TextInput>
+           <TextInput style={styles.textInput} placeholder={"Weight"} keyboardType="numeric" onChangeText={ value => setWeight(value)}></TextInput>
 
             <View style={styles.seprator}/>
               <Text style={styles.subTitle}>Bottles</Text>
@@ -88,7 +89,7 @@ export default function App() {
 
                 <View style={styles.seprator}/>
                   <View style = {styles.answerContainer}>
-                     <Text style = {styles.answerText}>{answer.toFixed(2)}</Text>
+                      <Text style = { [answer <= 0.5 ? styles.green : answer >= 0.5 && answer <= 1.2 ? styles.yellow :  styles.red ]}>{answer}</Text>
                   </View>
                     <Button title = {'Calculate'} onPress = {() => calculate()}></Button>
         <StatusBar style="auto" />
@@ -156,9 +157,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 20,
   },
-  answerText : {
+  green : {
     fontSize: 40,
     color: "green",
   },
+  yellow : {
+    fontSize: 40,
+    color: "yellow",
+  },
+  red : {
+    fontSize: 40,
+    color: "red",
+  }
 
 });
