@@ -4,6 +4,11 @@ import DeleteNotes from './DeleteNotes';
 import UpdateNotes from './UpdateNotes';
 import styles from '../Styles'
 
+/**
+ *  Map data to readable form. one ternary operator for if the user wants to edit text. 
+ *  colorMania() is here to switch the backgroundColor of each note
+ *  Also here we have buttons for delete and edit so that we can collect the document id and send it to them.
+ */
 
 export default function DisplayNotes({ notes }) {
 
@@ -28,18 +33,27 @@ return (
                             { switchToInput !== key ?  
                                 ( <Text style = { styles.text }> {notes.text} </Text> )
                                 :
-                                ( <TextInput style = { styles.text } placeholder={'Update a note'} value = {text} onChangeText = { text => setText(text) } multiline = { true } numberOfLines={3}/> )
+                                ( <TextInput style = { styles.text } 
+                                             placeholder={'Update a note'} 
+                                             value = {text} onChangeText = { text => setText(text) } 
+                                             multiline = { true } 
+                                             numberOfLines={3}/> )
                             }
-                            <UpdateNotes id = { notes.id } switchToInput = { switchToInput } setSwitchToInput = { setSwitchToInput } text = { text } setText = { setText } selectID = { key }/>
+                            <UpdateNotes id = { notes.id } 
+                                         switchToInput = { switchToInput } 
+                                         setSwitchToInput = { setSwitchToInput } 
+                                         text = { text } 
+                                         setText = { setText } 
+                                         selectID = { key }/>
                         </View>
 
                             <View style = { styles.seprator }/>
 
                                 <View style = { styles.subNoteContainer }>
                                     <Text style = { styles.date }> {notes.Added} </Text>
-                                    <DeleteNotes id = { notes.id }/>
-                                </View>
-                    </View>
+                                        <DeleteNotes id = { notes.id }/>
+                                    </View>
+                        </View>
                 )
             } )}     
         </View>

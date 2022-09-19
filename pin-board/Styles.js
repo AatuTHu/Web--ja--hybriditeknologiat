@@ -9,6 +9,8 @@ export default StyleSheet.create({
         paddingTop: Constants.statusBarHeight,
       },
     titleContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
         marginBottom: 10,
         padding: 10,
         width: 360,
@@ -39,7 +41,7 @@ export default StyleSheet.create({
         borderBottomWidth: 6,
         marginRight: 6,
         borderRightWidth:3,
-        borderLeftWidth: 0.5,
+        borderLeftWidth: 1,
         marginBottom: 5,
     },
     subNoteContainer: {
@@ -56,7 +58,7 @@ export default StyleSheet.create({
     btnAdd: {
         alignSelf: 'flex-end',
         borderWidth: 2, 
-        width: 70,
+        width: 50,
         padding: 5,
         borderRadius: 10,
         backgroundColor: '#26A557',
@@ -77,4 +79,9 @@ export default StyleSheet.create({
         width : '85%',
         fontWeight: 'bold',
     },
+    hint : {
+        alignSelf: 'center',
+        fontWeight: 'bold',
+        backgroundColor: '#325695'
+    }
 })

@@ -9,6 +9,10 @@ import { useState, useEffect } from 'react';
 import { convertFirebaseTimeStampToJS } from './helper/Functions';
 
 
+/**
+  * Root of our project, fetch data from firestore and send it to DisplayNotes component so it gets drawn.
+  * draws header and addNotes components aswell
+ */
 
 export default function App() {
 
