@@ -42,7 +42,10 @@ export default function App() {
         <Header/>
           <AddNotes/>
             <DisplayNotes notes = { notes }/>
-        
+        <StatusBar
+          style= 'auto'
+          backgroundColor='#ffff'
+        />       
       </ScrollView>
     </View>
   );

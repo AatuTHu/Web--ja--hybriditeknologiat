@@ -6,10 +6,11 @@ import { useState } from 'react';
 export default function AddNotes() {
 
     const [text, setText ] = useState("");
+    const [placeholder,setPlaceholder] = useState('Write a note')
 
     const save = async() => {
       if(text.length == 0) {
-        return alert('Write something')
+        setPlaceholder('Write shometing')
       } else {
         const docRef = await addDoc(collection(firestore, MESSAGES), {
           text: text,
@@ -17,6 +18,7 @@ export default function AddNotes() {
         }).catch (error => console.log(error))
         
         setText('')
+        setPlaceholder('Write a note')
         console.log('Message saved')
       }
     }
@@ -24,7 +26,7 @@ export default function AddNotes() {
   return (
     <View> 
         <View style = { styles.addContainer }>          
-                <TextInput style = { {marginLeft : 12 } } placeholder={'write a note'} value = {text} onChangeText = { text => setText(text) } multiline = { true } numberOfLines={6}/> 
+                <TextInput placeholder={ placeholder } value = {text} onChangeText = { text => setText(text) } multiline = { true } numberOfLines={6}/> 
                 <TouchableOpacity onPress = { save }>
                     <View style = { styles.btnAdd}>
                         <Text style = { styles.text }>Add</Text>

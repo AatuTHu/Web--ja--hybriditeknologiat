@@ -1,20 +1,21 @@
 import { StyleSheet } from 'react-native'
+import  Constants  from 'expo-constants';
 
 export default StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#328695',
         alignItems: 'center',
+        paddingTop: Constants.statusBarHeight,
       },
     titleContainer: {
-        top: 24,
-        marginBottom: 20,
+        marginBottom: 10,
         padding: 10,
-        width: '100%',
+        width: 360,
     },
     Title: {
         fontSize: 40,
-        color: 'black',
+        color: 'white',
         fontWeight: 'bold',
         fontStyle: 'italic',
         textAlign: 'center',
@@ -24,24 +25,22 @@ export default StyleSheet.create({
     },
     addContainer: {
         marginTop: 20,
-        backgroundColor: "darkorange",
-        width: 325,
+        backgroundColor: "#f3f3f3",
         padding: 10,
+        marginRight: 6,
         borderRadius: 20,
         borderBottomWidth: 6,
         borderRightWidth:3,
         borderLeftWidth: 0.5, 
     },
     noteContainer: {
-        marginTop: 20,
-        backgroundColor: "orange",
-        width: 325,
         padding: 15,
-        borderRadius: 5,
+        borderRadius: 6,
         borderBottomWidth: 6,
+        marginRight: 6,
         borderRightWidth:3,
         borderLeftWidth: 0.5,
-        justifyContent: 'space-evenly',
+        marginBottom: 5,
     },
     subNoteContainer: {
         flexDirection: 'row',
@@ -50,28 +49,32 @@ export default StyleSheet.create({
     btnDelete: {
         width: 25,
         height: 25,
-        borderRadius: 50,
-        backgroundColor: 'red',
-        borderWidth: 1,   
+        borderRadius: 25,
+        backgroundColor: '#f30826',
+        borderWidth: 2,   
     },
     btnAdd: {
         alignSelf: 'flex-end',
-        borderWidth: 1, 
+        borderWidth: 2, 
         width: 70,
         padding: 5,
         borderRadius: 10,
-        backgroundColor: 'green',
+        backgroundColor: '#26A557',
         alignItems: 'center',
     },
-    btnUpdate: {
-        position:'relative',
+    btnUpdate: { 
         width: 25,
         height: 25,
-        borderRadius: 50,
-        backgroundColor: 'blue',
-        borderWidth: 1,   
+        borderRadius: 5,
+        backgroundColor: '#4272f1',
+        borderWidth: 2,   
+    },
+    date: {
+        fontWeight: 'bold',
+        fontStyle: 'italic',
     },
     text: {
+        width : '85%',
         fontWeight: 'bold',
     },
 })
