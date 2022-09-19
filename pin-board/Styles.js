@@ -20,7 +20,7 @@ export default StyleSheet.create({
         textAlign: 'center',
     },
     seprator: {
-        marginTop: 20,
+        marginTop: 15,
     },
     addContainer: {
         marginTop: 20,
@@ -37,10 +37,11 @@ export default StyleSheet.create({
         backgroundColor: "orange",
         width: 325,
         padding: 15,
-        borderRadius: 100,
+        borderRadius: 5,
         borderBottomWidth: 6,
         borderRightWidth:3,
         borderLeftWidth: 0.5,
+        justifyContent: 'space-evenly',
     },
     subNoteContainer: {
         flexDirection: 'row',
@@ -61,6 +62,14 @@ export default StyleSheet.create({
         borderRadius: 10,
         backgroundColor: 'green',
         alignItems: 'center',
+    },
+    btnUpdate: {
+        position:'relative',
+        width: 25,
+        height: 25,
+        borderRadius: 50,
+        backgroundColor: 'blue',
+        borderWidth: 1,   
     },
     text: {
         fontWeight: 'bold',
