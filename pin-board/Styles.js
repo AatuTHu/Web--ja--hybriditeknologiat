@@ -8,6 +8,20 @@ export default StyleSheet.create({
         alignItems: 'center',
         paddingTop: Constants.statusBarHeight,
       },
+    loginSubContainer: {
+        width: 300,
+        marginTop: '45%',
+        padding: 20,
+        backgroundColor: '#f3f3f3',
+        borderBottomWidth: 6,
+        borderRightWidth:3,
+        borderLeftWidth: 0.5,
+        borderRadius: 10,
+    },
+    loginItems: {
+        padding: 10,
+        fontSize: 16,
+    },
     titleContainer: {
         flexDirection: 'row',
         justifyContent: 'space-evenly',
@@ -48,6 +62,17 @@ export default StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
     },
+    btnLogin: {    
+        
+        height: 50,
+        borderRadius: 5,
+        borderBottomWidth: 4,
+        borderRightWidth:3,
+        borderLeftWidth: 0.5, 
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'lightblue',
+    },
     btnDelete: {
         width: 25,
         height: 25,
@@ -83,5 +108,27 @@ export default StyleSheet.create({
         alignSelf: 'center',
         fontWeight: 'bold',
         backgroundColor: '#325695'
+    },
+    bottomNavContainer: {
+        width: '100%',
+        flexDirection: 'row',
+        backgroundColor: '#284266',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        height: 60,
+        borderTopWidth: 2,
+        borderBottomWidth: 2,
+    },
+    navItems: {
+        fontWeight: 'bold',
+        color: 'white',
+        fontSize: 15,
+    },
+    bottomSubNavSubContainer: {
+        justifyContent: 'center',
+        height: '100%',
+        width: '100%',
+        borderRadius: 10,
+        alignItems: 'center',
     }
 })

@@ -1,5 +1,7 @@
 import { Text,View,TextInput } from 'react-native';
-import { useState } from 'react'
+import { firestore,collection,MESSAGES, onSnapshot,querySnapshot, query, orderBy, signOut } from '../firebase/Config';
+import { convertFirebaseTimeStampToJS } from '../helper/Functions';
+import { useState, useEffect } from 'react'
 import DeleteNotes from './DeleteNotes';
 import UpdateNotes from './UpdateNotes';
 import styles from '../Styles'
@@ -10,18 +12,39 @@ import styles from '../Styles'
  *  Also here we have buttons for delete and edit so that we can collect the document id and send it to them.
  */
 
-export default function DisplayNotes({ notes }) {
+export default function DisplayNotes() {
 
-   
+    const [notes, setNotes] = useState([])
     const [switchToInput, setSwitchToInput ] = useState(-1)
     const [text,setText] = useState('')
     const colors = [ '#bb6eff','#d1ff6e','#ff808a', '#fdb903' ];
     let colorId = 0 
 
-    const colorMania = () => {
-           
-        if(colorId >= 3 ) { return colorId = 0 } else { return colorId = colorId+1 }
-        
+
+    useEffect(() => {
+        const q = query(collection(firestore,MESSAGES),orderBy('Added','desc'))
+    
+        const unsubscribe = onSnapshot(q,(querySnapshot) => {
+          const tempMessages = []
+    
+          querySnapshot.forEach((doc) => {
+            const messageObject = {
+              id: doc.id,
+              text: doc.data().text,
+              Added: convertFirebaseTimeStampToJS(doc.data().Added)
+            }
+            tempMessages.push(messageObject)
+          })
+          setNotes(tempMessages)
+        })
+    
+        return () => {
+          unsubscribe()
+        }
+      }, [])
+
+    const colorMania = () => {       
+        if(colorId >= 3 ) { return colorId = 0 } else { return colorId = colorId+1 } 
     }
 
 return ( 

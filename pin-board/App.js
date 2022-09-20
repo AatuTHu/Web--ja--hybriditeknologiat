@@ -1,56 +1,64 @@
 import { StatusBar } from 'expo-status-bar';
-import { View, ScrollView } from 'react-native';
-import { firestore,collection,MESSAGES, onSnapshot,querySnapshot, query, orderBy } from './firebase/Config';
+import { View, ScrollView,Text } from 'react-native';
 import styles from './Styles';
 import Header from './components/Header';
 import DisplayNotes from './components/DisplayNotes';
 import AddNotes from './components/AddNotes';
-import { useState, useEffect } from 'react';
-import { convertFirebaseTimeStampToJS } from './helper/Functions';
-
+import Login from './components/Login';
+import BottomNav from './components/BottomNav';
+import { useState } from 'react';
 
 /**
-  * Root of our project, fetch data from firestore and send it to DisplayNotes component so it gets drawn.
-  * draws header and addNotes components aswell
+  * draws header, addNotes, dispaly and BottomNav components
  */
 
 export default function App() {
+  
+  
+  const [ loggedIn, setLogged ] = useState(false)
+  const [ screen, setScreen ] = useState(1)
 
-  const [notes, setNotes] = useState([])
-
-  useEffect(() => {
-    const q = query(collection(firestore,MESSAGES),orderBy('Added','desc'))
-
-    const unsubscribe = onSnapshot(q,(querySnapshot) => {
-      const tempMessages = []
-
-      querySnapshot.forEach((doc) => {
-        const messageObject = {
-          id: doc.id,
-          text: doc.data().text,
-          Added: convertFirebaseTimeStampToJS(doc.data().Added)
-        }
-        tempMessages.push(messageObject)
-      })
-      setNotes(tempMessages)
-    })
-
-    return () => {
-      unsubscribe()
-    }
-  }, [])
-
-  return (
-    <View style={styles.container}>
+  const screenNavigation = () => {
+    switch (screen) { 
+      case 1: 
+      return (
       <ScrollView>
         <Header/>
           <AddNotes/>
-            <DisplayNotes notes = { notes }/>
-        <StatusBar
-          style= 'auto'
-          backgroundColor='#ffff'
-        />       
-      </ScrollView>
+        <DisplayNotes/>       
+      </ScrollView> );
+  
+       case 2:
+       return (
+        <ScrollView>
+          <Text>moro</Text>
+        </ScrollView>);
+        case 3: 
+        return (
+          <ScrollView>
+          <Text>tere!</Text>
+          </ScrollView>);   
+    }
+   }
+
+  
+  if ( !loggedIn ) {
+  return (
+  <View style = {styles.container}>
+    
+    {screenNavigation()}
+        
+    <BottomNav setScreen = { setScreen }/>
+    <StatusBar
+        style= 'auto'
+        backgroundColor='#ffff'/>
     </View>
   );
+} else {
+  return  (<View style = { styles.container }>
+            <ScrollView>
+              <Login setLogged = { setLogged }/>
+            </ScrollView>
+          </View>)
+}
 }
