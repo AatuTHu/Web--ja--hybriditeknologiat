@@ -8,7 +8,7 @@ import { useState } from 'react';
    * in the save function we also check if the input is empty.
 */
 
-export default function AddNotes() {
+export default function AddNotes({ uId, displayName}) {
 
     const [text, setText ] = useState(""); 
     const [placeholder,setPlaceholder] = useState('Write a note')
@@ -19,18 +19,19 @@ export default function AddNotes() {
       } else {
         const docRef = await addDoc(collection(firestore, MESSAGES), {
           text: text,
+          displayName: displayName,
+          uId : uId, 
           Added: serverTimestamp(),
         }).catch (error => console.log(error))
         
         setText('')
         setPlaceholder('Write a note')
-        console.log('Message saved')
       }
     }
   
   return (
     <View> 
-      <View style = { styles.addContainer }>          
+      <View style = { styles.generalContainer }>          
         <TextInput placeholder={ placeholder } value = {text} onChangeText = { text => setText(text) } multiline = { true } numberOfLines={6}/> 
           <TouchableOpacity onPress = { save }>
             <View style = { styles.btnAdd}>

@@ -12,7 +12,7 @@ export default function DeleteNotes({ id }) {
         const docRef = doc(firestore,MESSAGES,id)
         deleteDoc(docRef)
         .then(() => {
-            console.log("Deleted")
+            alert('Message deleted successfully')
         })
         .catch ( error => {
             console.log(error)

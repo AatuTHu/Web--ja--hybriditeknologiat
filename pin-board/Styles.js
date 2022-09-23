@@ -36,10 +36,15 @@ export default StyleSheet.create({
         fontStyle: 'italic',
         textAlign: 'center',
     },
+    subTitle: {
+        alignSelf: 'center',
+        fontWeight: 'bold',
+        fontSize: 25
+    },
     seprator: {
         marginTop: 15,
     },
-    addContainer: {
+    generalContainer: {
         marginTop: 20,
         backgroundColor: "#f3f3f3",
         padding: 10,
@@ -90,6 +95,7 @@ export default StyleSheet.create({
         alignItems: 'center',
     },
     btnUpdate: { 
+        alignSelf: 'flex-end',
         width: 25,
         height: 25,
         borderRadius: 5,
@@ -97,12 +103,13 @@ export default StyleSheet.create({
         borderWidth: 2,   
     },
     date: {
+        fontSize: 16,
         fontWeight: 'bold',
         fontStyle: 'italic',
     },
     text: {
         width : '85%',
-        fontWeight: 'bold',
+        fontSize: 16,
     },
     hint : {
         alignSelf: 'center',

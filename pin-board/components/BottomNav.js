@@ -1,10 +1,11 @@
+
 import { View, Text,TouchableOpacity } from 'react-native'
 import styles from '../Styles'
 
-export default function BottomNav({ setScreen }) {
+export default function BottomNav({ setScreen, SignOut }) {
   return (
     <View style = {styles.bottomNavContainer}>
-        
+         
        <TouchableOpacity onPress = { () => setScreen(2) } >
             <View style = {styles.bottomSubNavSubContainer}>
             <Text style={styles.navItems}>Profile</Text>
@@ -17,7 +18,7 @@ export default function BottomNav({ setScreen }) {
             </View>
        </TouchableOpacity>
 
-       <TouchableOpacity onPress = { () => setScreen(3) }>
+       <TouchableOpacity onPress = { () => SignOut() }>
        <View style = {styles.bottomSubNavSubContainer}>
             <Text style={styles.navItems}>Sign Out</Text>
             </View>
