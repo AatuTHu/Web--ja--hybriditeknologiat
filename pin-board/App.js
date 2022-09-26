@@ -28,7 +28,7 @@ export default function App() {
         <ScrollView>
           <Header Title = {Title}/>
             <AddNotes displayName = { displayName } uId = { uId } />
-          <DisplayNotes screen = { screen } uId = { uId } />       
+          <DisplayNotes/>       
         </ScrollView>
         );
     } else if ( screen === 2 ) {
@@ -36,8 +36,7 @@ export default function App() {
         return (
           <ScrollView>
             <Header Title = { Title } />
-              <Profile displayName = { displayName } uId = { uId } email = { email } setScreen = { setScreen }/>
-            <DisplayNotes screen = { screen } uId = { uId } />
+              <Profile displayName = { displayName } uId = { uId } email = { email } screen = { screen } setScreen = { setScreen }/>
           </ScrollView>
           );
     } else if ( screen === 3) {
@@ -54,9 +53,6 @@ export default function App() {
    const SignOut = () => { 
       const auth = getAuth()
         signOut(auth).then(() => { 
-          setDisplayName('')
-          setUid('')
-          setEmail('')
           setLogged(!loggedIn)
           setScreen(1) 
         }).catch((error) => {

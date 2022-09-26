@@ -1,10 +1,6 @@
 import { Text,View } from 'react-native'
 import style from '../Styles'
 
-/**
- * Title component
- */
-
 export default function Header({Title}) {
   return (
             <View style = { style.titleContainer }>    

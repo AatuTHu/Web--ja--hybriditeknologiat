@@ -3,10 +3,6 @@ import { firestore,collection,addDoc,MESSAGES, serverTimestamp } from '../fireba
 import  styles from '../Styles' 
 import { useState } from 'react';
 
-/**
-   * This component takes users input and sends it to firestore database
-   * in the save function we also check if the input is empty.
-*/
 
 export default function AddNotes({ uId, displayName}) {
 

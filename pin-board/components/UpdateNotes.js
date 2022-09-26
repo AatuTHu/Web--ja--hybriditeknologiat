@@ -14,7 +14,6 @@ export default function UpdateNotes({text, setText,setSwitchToInput,switchToInpu
             text : text,
             Added : serverTimestamp(),
           }).then( () => {
-            console.log('updated')
           }).catch (error => console.log(error))
             setText('')
             setSwitchToInput(-1)    

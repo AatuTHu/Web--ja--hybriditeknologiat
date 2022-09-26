@@ -36,9 +36,9 @@ export default StyleSheet.create({
         fontStyle: 'italic',
         textAlign: 'center',
     },
-    subTitle: {
-        alignSelf: 'center',
+    subTitle: {  
         fontWeight: 'bold',
+        fontStyle: 'italic',
         fontSize: 25
     },
     seprator: {
@@ -68,7 +68,6 @@ export default StyleSheet.create({
         justifyContent: 'space-between',
     },
     btnLogin: {    
-        
         height: 50,
         borderRadius: 5,
         borderBottomWidth: 4,
@@ -110,11 +109,6 @@ export default StyleSheet.create({
     text: {
         width : '85%',
         fontSize: 16,
-    },
-    hint : {
-        alignSelf: 'center',
-        fontWeight: 'bold',
-        backgroundColor: '#325695'
     },
     bottomNavContainer: {
         width: '100%',
