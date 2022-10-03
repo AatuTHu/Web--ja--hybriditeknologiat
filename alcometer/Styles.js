@@ -5,7 +5,8 @@ export default StyleSheet.create({
         flex: 1,
         backgroundColor: '#fff',
         top: 24,
-        padding: 15, 
+        padding: 15,
+
       },
       title: {
         textAlign: 'center',
@@ -24,18 +25,31 @@ export default StyleSheet.create({
         height: 50,
         backgroundColor: 'lightGrey',
       },
+
       seprator: {
         height: 10,
         width: 200,
         margin: 10,
       },
+      dropDownContainer: {
+        height: 290,
+        flexWrap: 'wrap',  
+      },
+      dropDownItems: {
+       border: 1,
+       padding: 10,
+      },
+      dropDownTitles : {
+        color: 'lightGrey',
+        fontStyle: 'italic',
+      },  
       radioContainer: {
         margin: 25,
         flexDirection: 'row',
         justifyContent: 'space-between'
       },
       radioBtn: {
-        height: 30,
+            height: 30,
             width: 30,
             borderRadius: 100,
             borderWidth: 2,
