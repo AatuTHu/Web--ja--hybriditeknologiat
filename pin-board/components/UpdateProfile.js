@@ -10,7 +10,7 @@ export default function UpdateProfile({displayName,email,setDisplayName,setEmail
             displayName: displayName,
             email: email,
         }).then(() => {
-            setScreen(2)
+            setScreen(1)
         }).catch((error) => {
             console.log(error)
         })

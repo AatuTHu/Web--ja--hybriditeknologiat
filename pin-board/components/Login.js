@@ -19,6 +19,7 @@ export default function Login({setLogged, setDisplayName, setUid, setEmail , set
                     setUid(user.uid)
                     setEmail(user.email)
                     setLogged(true)
+                    setScreen(1)
                 } 
             })    
         }).catch((error) => {
