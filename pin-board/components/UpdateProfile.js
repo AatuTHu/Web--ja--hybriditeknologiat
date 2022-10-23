@@ -18,7 +18,7 @@ export default function UpdateProfile({displayName,email,setDisplayName,setEmail
 
 
   return ( <View style = { styles.generalContainer }>  
-    <Text style = { styles.text }>Current dispalyname : { displayName } </Text>
+    <Text style = { styles.text }>Current displayname : { displayName } </Text>
         <TextInput placeholder='type Displayname' value = { displayName } onChangeText = { setDisplayName }></TextInput>
     <View style = { styles.seprator } />
         <Text style = { styles.text }>Current email : { email } </Text>
